@@ -4,13 +4,20 @@ class PostsController < ApplicationController
 	end
 
 	def new
+	  @post = Post.new
 	end
 
 	def create
       @post = Post.new(post_params)
-      @post.save
+      
+      if @post.save
+      	redirect_to @post
+      else
+      	render 'new' 
 
-      redirect_to @post
+      	#render instead of redirect, because redirect would do an entirely
+      	#new http request and reset the page, losing unsubmitted blog post.
+      end
 	end
 
 	def show
