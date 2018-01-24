@@ -158,6 +158,7 @@ a {
 		.body {
 			font-size: 1.1em;
 			line-height: 1.75;
+			height: 500px;
 		}
 		.date_and_author {
 			color: #9eafba;
@@ -203,6 +204,7 @@ a {
 			}
 			input[type="text"], textarea {
 				width: 50%;
+				height: 500px !important;
 			}
 		}
 	}
