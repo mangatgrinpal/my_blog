@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/about', to: 'pages#about'
 
+  get 'new_user_session', to: 'devise/sessions#new'
   
-  
+  delete 'destroy_user_session', to: 'devise/sessions#destroy'
+
 end
