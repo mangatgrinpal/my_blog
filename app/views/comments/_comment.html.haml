@@ -1,8 +1,8 @@
 .comment.clearfix
 	.comment_content
 		%p.comment_name.strong
-			- comment.name
+			= comment.name
 		%p.comment_body
-			- comment.body
+			= comment.body
 		%p.comment_time
-			- "#{time_ago_in_words(comment.created_at)} Ago."
+			= "#{time_ago_in_words(comment.created_at)} Ago."
