@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	before_action :find_post, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, except: [:index, :show]
 	
 	def index
@@ -10,30 +11,26 @@ class PostsController < ApplicationController
 	end
 
 	def create
-      @post = current_user.posts.build(post_params)
-      
-      if @post.save
-      	redirect_to @post
-      else
-      	render 'new' 
+    @post = current_user.posts.build(post_params)
+    
+    if @post.save
+    	redirect_to @post
+    else
+    	render 'new' 
 
-      	#render instead of redirect, because redirect would do an entirely
-      	#new http request and reset the page, losing unsubmitted blog post.
-      end
+    	#render instead of redirect, because redirect would do an entirely
+    	#new http request and reset the page, losing unsubmitted blog post.
+    end
 	end
 
 	def show
-		@post = Post.find(params[:id])
 	end
 
 	def edit
-		@post = Post.find(params[:id])
 	end
 
 	def update
-		@post = Post.find(params[:id])
-
-		if @post.update(params[:post].permit(:title, :body))
+		if @post.update(post_params)
 			redirect_to @post
 		else
 			render 'edit'
@@ -41,14 +38,16 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
-		@post = Post.find(params[:id])
 		@post.destroy
-
 		redirect_to root_path
 	end
 
 	private
 	  def post_params
 	  	params.require(:post).permit(:title, :body)
+	  end
+
+	  def find_post
+	  	@post = Pin.find(params[:id])
 	  end
 end
