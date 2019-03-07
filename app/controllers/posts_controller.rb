@@ -48,6 +48,6 @@ class PostsController < ApplicationController
 	  end
 
 	  def find_post
-	  	@post = Pin.find(params[:id])
+	  	@post = Post.find(params[:id])
 	  end
 end
